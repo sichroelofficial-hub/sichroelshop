@@ -5,92 +5,24 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>SICHROEL SHOP – Fast. Safe. GG.</title>
   <style>
-    body {
-      margin: 0;
-      font-family: 'Segoe UI', sans-serif;
-      background: #0f172a;
-      color: #e5e7eb;
-    }
-    header {
-      padding: 40px 20px;
-      text-align: center;
-      background: linear-gradient(135deg, #020617, #0f172a);
-    }
+    body { margin: 0; font-family: 'Segoe UI', sans-serif; background: #0f172a; color: #e5e7eb; }
+    header { padding: 40px 20px; text-align: center; background: linear-gradient(135deg, #020617, #0f172a); }
     header h1 { font-size: 36px; margin-bottom: 10px; }
     header p { font-size: 18px; color: #cbd5f5; }
-    .badge {
-      display: inline-block;
-      margin-top: 15px;
-      padding: 8px 16px;
-      background: #22c55e;
-      color: #022c22;
-      border-radius: 20px;
-      font-weight: bold;
-    }
+    .badge { display: inline-block; margin-top: 15px; padding: 8px 16px; background: #22c55e; color: #022c22; border-radius: 20px; font-weight: bold; }
     section { padding: 40px 20px; max-width: 1100px; margin: auto; }
     h2 { text-align: center; margin-bottom: 30px; }
-    .games {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 20px;
-      margin-top: 20px;
-    }
-    .card {
-      background: #020617;
-      border-radius: 16px;
-      padding: 20px;
-      box-shadow: 0 10px 30px rgba(0,0,0,.3);
-    }
+    .games { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 20px; margin-top: 20px; }
+    .card { background: #020617; border-radius: 16px; padding: 20px; box-shadow: 0 10px 30px rgba(0,0,0,.3); }
     .card img { width: 100%; border-radius: 12px; margin-bottom: 15px; }
     .card h3 { margin: 0 0 10px; }
-    input, select {
-      background: #0f172a;
-      border: 1px solid #334155;
-      color: #e5e7eb;
-      padding: 8px;
-      border-radius: 8px;
-      width: 100%;
-      margin-top: 10px;
-    }
-    input:focus, select:focus {
-      outline: none;
-      border-color: #22c55e;
-      box-shadow: 0 0 5px #22c55e;
-    }
-    .order-btn {
-      display: block;
-      margin-top: 15px;
-      padding: 12px;
-      text-align: center;
-      background: #22c55e;
-      color: #022c22;
-      border-radius: 12px;
-      text-decoration: none;
-      font-weight: bold;
-      transition: 0.3s;
-    }
-    .order-btn:hover {
-      background: #16a34a;
-      color: #fff;
-      cursor: pointer;
-    }
-    .flow {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: 20px;
-      text-align: center;
-    }
+    input, select { background: #0f172a; border: 1px solid #334155; color: #e5e7eb; padding: 8px; border-radius: 8px; width: 100%; margin-top: 10px; }
+    input:focus, select:focus { outline: none; border-color: #22c55e; box-shadow: 0 0 5px #22c55e; }
+    .order-btn { display: block; margin-top: 15px; padding: 12px; text-align: center; background: #22c55e; color: #022c22; border-radius: 12px; text-decoration: none; font-weight: bold; transition: 0.3s; }
+    .order-btn:hover { background: #16a34a; color: #fff; cursor: pointer; }
+    .flow { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; text-align: center; }
     .flow div { background: #020617; padding: 20px; border-radius: 16px; }
-    .qris {
-      background: #1e293b;
-      padding: 20px;
-      border-radius: 12px;
-      text-align: center;
-      font-size: 18px;
-      font-weight: bold;
-      color: #22c55e;
-      margin: 40px 20px;
-    }
+    .qris { background: #1e293b; padding: 20px; border-radius: 12px; text-align: center; font-size: 18px; font-weight: bold; color: #22c55e; margin: 40px 20px; }
     footer { text-align: center; padding: 30px; font-size: 14px; color: #94a3b8; }
   </style>
 </head>
@@ -116,7 +48,7 @@
   <h2>🎮 Top Up Game</h2>
   <div class="games">
 
-    <!-- Card Mobile Legends -->
+    <!-- Card template, game baru otomatis bisa muncul jika CSV ada -->
     <div class="card" data-game="ML">
       <img src="https://cdn.phototourl.com/uploads/2026-02-03-d7e947cc-dc7d-4fcf-b01a-c68741c52ffe.jpg" alt="Mobile Legends">
       <h3>Mobile Legends</h3>
@@ -127,7 +59,6 @@
       <button class="order-btn">Buy</button>
     </div>
 
-    <!-- Card Free Fire -->
     <div class="card" data-game="FF">
       <img src="https://cdn.phototourl.com/uploads/2026-02-03-3c2d0e64-7e1a-4caf-90cc-f49dbf3e9468.jpg" alt="Free Fire">
       <h3>Free Fire</h3>
@@ -158,8 +89,10 @@ Mohon cek stok ya 🙏`;
   window.open(url, '_blank');
 }
 
-// Load CSV
-Papa.parse('produk.csv', {
+// URL CSV raw GitHub
+const csvUrl = 'https://raw.githubusercontent.com/sichroelofficial-hub/sichroelshop/main/sichroelshop/CSV%20LIST.csv';
+
+Papa.parse(csvUrl, {
   download: true,
   header: true,
   complete: function(results) {
@@ -172,22 +105,21 @@ Papa.parse('produk.csv', {
       const serverInput = card.querySelector('.server');
       const btn = card.querySelector('.order-btn');
 
-      // Filter CSV sesuai GAME (huruf besar)
-      const gameProducts = data.filter(item => item.GAME === game);
+      // Filter CSV sesuai Game
+      const gameProducts = data.filter(item => item.Game === game);
 
       gameProducts.forEach(item => {
         const option = document.createElement('option');
-        if(item.HARGA_ASLI && item.HARGA_DISKON){
-          option.textContent = `${item.NAMA} – Rp${parseInt(item.HARGA_ASLI).toLocaleString()} → Rp${parseInt(item.HARGA_DISKON).toLocaleString()}`;
-          option.value = `${item.NAMA} - Rp${parseInt(item.HARGA_DISKON).toLocaleString()}`;
+        if(item['Harga Asli'] && item['Harga Diskon']){
+          option.textContent = `${item.Nama} – Rp${parseInt(item['Harga Asli']).toLocaleString()} → Rp${parseInt(item['Harga Diskon']).toLocaleString()}`;
+          option.value = `${item.Nama} - Rp${parseInt(item['Harga Diskon']).toLocaleString()}`;
         } else {
-          option.textContent = `${item.NAMA} – Rp${parseInt(item.HARGA_DISKON || item.HARGA_ASLI).toLocaleString()}`;
-          option.value = `${item.NAMA} - Rp${parseInt(item.HARGA_DISKON || item.HARGA_ASLI).toLocaleString()}`;
+          option.textContent = `${item.Nama} – Rp${parseInt(item['Harga Diskon'] || item['Harga Asli']).toLocaleString()}`;
+          option.value = `${item.Nama} - Rp${parseInt(item['Harga Diskon'] || item['Harga Asli']).toLocaleString()}`;
         }
         select.appendChild(option);
       });
 
-      // Event Buy
       btn.addEventListener('click', () => {
         const nominal = select.value;
         const user = userInput.value.trim();
